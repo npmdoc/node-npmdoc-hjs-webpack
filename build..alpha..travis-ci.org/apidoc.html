@@ -1,0 +1,592 @@
+<div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a
+
+        href="https://github.com/henrikjoreteg/hjs-webpack"
+
+    >hjs-webpack (v9.1.0)</a>
+</h1>
+<h4>Presets for setting up webpack with hotloading react and ES6(2015) using Babel.</h4>
+<div class="apidocSectionDiv"><a
+    href="#apidoc.tableOfContents"
+    id="apidoc.tableOfContents"
+><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.hjs-webpack">module hjs-webpack</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.hjs-webpack.hjs-webpack">
+            function <span class="apidocSignatureSpan"></span>hjs-webpack
+            <span class="apidocSignatureSpan">(opts)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.hjs-webpack.html_plugin">
+            function <span class="apidocSignatureSpan">hjs-webpack.</span>html_plugin
+            <span class="apidocSignatureSpan">(options)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">hjs-webpack.</span>html_plugin.prototype</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">hjs-webpack.</span>installed_hot_loaders</span>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.hjs-webpack.html_plugin">module hjs-webpack.html_plugin</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.hjs-webpack.html_plugin.html_plugin">
+            function <span class="apidocSignatureSpan">hjs-webpack.</span>html_plugin
+            <span class="apidocSignatureSpan">(options)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.hjs-webpack.html_plugin.prototype">module hjs-webpack.html_plugin.prototype</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.hjs-webpack.html_plugin.prototype.addAssets">
+            function <span class="apidocSignatureSpan">hjs-webpack.html_plugin.prototype.</span>addAssets
+            <span class="apidocSignatureSpan">(compiler, data)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.hjs-webpack.html_plugin.prototype.apply">
+            function <span class="apidocSignatureSpan">hjs-webpack.html_plugin.prototype.</span>apply
+            <span class="apidocSignatureSpan">(compiler)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.hjs-webpack.html_plugin.prototype.getAssets">
+            function <span class="apidocSignatureSpan">hjs-webpack.html_plugin.prototype.</span>getAssets
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.hjs-webpack.installed_hot_loaders">module hjs-webpack.installed_hot_loaders</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.hjs-webpack.installed_hot_loaders.load">
+            function <span class="apidocSignatureSpan">hjs-webpack.installed_hot_loaders.</span>load
+            <span class="apidocSignatureSpan">(config)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.hjs-webpack" id="apidoc.module.hjs-webpack">module hjs-webpack</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.hjs-webpack.hjs-webpack" id="apidoc.element.hjs-webpack.hjs-webpack">
+        function <span class="apidocSignatureSpan"></span>hjs-webpack
+        <span class="apidocSignatureSpan">(opts)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">hjs-webpack = function (opts) {
+  checkRequired(opts)
+  var outputFolder = path.resolve(opts.out)
+  var cwd = process.cwd()
+
+  // add in our defaults
+  var spec = defaults(opts, {
+    entry: path.resolve(opts.in),
+    output: defaults(opts.output || {}, {
+      path: outputFolder + &#x27;/&#x27;,
+      filename: null,
+      cssFilename: null,
+      hash: false,
+      publicPath: &#x27;/&#x27;
+    }),
+    configFile: null,
+    isDev: isDev,
+    package: null,
+    replace: null,
+    https: false,
+    port: 3000,
+    hostname: &#x27;localhost&#x27;,
+    html: true,
+    urlLoaderLimit: 10000,
+    clearBeforeBuild: false,
+    serveCustomHtmlInDev: true,
+    devServer: {},
+    uglify: defaults(opts.uglify || {}, {
+      output: {
+        comments: false
+      }
+    })
+  })
+
+  spec.package = getPackage(spec.package)
+
+  if (!spec.output.filename) {
+    spec.output.filename = spec.isDev ? &#x27;app.js&#x27; : buildFilename(spec.package, spec.output.hash, &#x27;js&#x27;)
+  }
+
+  if (!spec.output.cssFilename) {
+    spec.output.cssFilename = spec.isDev ? &#x27;app.css&#x27; : buildFilename(spec.package, spec.output.hash, &#x27;css&#x27;)
+  }
+
+  var config = getBaseConfig(spec)
+
+  // check for any module replacements
+  if (spec.replace) {
+    for (var item in spec.replace) {
+      // allow for simple strings
+      if (typeof item === &#x27;string&#x27;) {
+        var regex = new RegExp(&#x27;^&#x27; + item + &#x27;$&#x27;)
+      }
+      var newResource = spec.replace[item]
+      if (typeof newResource === &#x27;string&#x27;) {
+        newResource = path.resolve(newResource)
+      }
+      config.plugins.push(new webpack.NormalModuleReplacementPlugin(regex, newResource))
+    }
+  }
+
+  // check for any module definitions
+  if (spec.define) {
+    config.plugins.push(new webpack.DefinePlugin(spec.define))
+  }
+
+  // dev specific stuff
+  if (spec.isDev) {
+    // debugging option
+    // https://webpack.github.io/docs/configuration.html#devtool
+    // https://github.com/HenrikJoreteg/hjs-webpack/issues/63
+    // Supports original code (before transforms) with pretty good initial
+    // build speed and good rebuild speed
+    config.devtool = spec.devtool || &#x27;cheap-module-eval-source-map&#x27;
+
+    // Create our dev server config for use in bin/hjs-dev-server
+    config.devServer = defaults(spec.devServer, {
+      // For webpack-dev-middleware
+      noInfo: true,
+      quiet: false,
+      lazy: false,
+      publicPath: spec.output.publicPath,
+      // Our own options for hjs-dev-server
+      historyApiFallback: true,
+      hot: true,
+      contentBase: outputFolder,
+      port: spec.port,
+      https: spec.https,
+      hostname: spec.hostname || spec.host
+    })
+
+    // Enable Webpack HMR unless explictly disabled
+    if (config.devServer.hot) {
+      installedHotLoaders.load(config)
+    }
+
+    // Add optional loaders
+    installedStyleLoaders.forEach(function (item) {
+      config.module.rules.push(item.dev)
+    })
+
+    // Add visualizer plugin
+    if (isInstalled(&#x27;webpack-visualizer-plugin&#x27;)) {
+      config.plugins.push(
+        new (require(&#x27;webpack-visualizer-plugin&#x27;))()
+      )
+    }
+  } else {
+    // clear out output folder if so configured
+    if (spec.clearBeforeBuild) {
+      // Throw error if trying to clear output directory but it contains the cwd
+      // See https://github.com/HenrikJoreteg/hjs-webpack/issues/186
+      if (containsPath(cwd, outputFolder)) {
+        throw new Error(&#x27;Cannot clear out directory since it contains the current working directory.\nTried to clear &#x27; + outputFolder
+ + &#x27; from &#x27; + cwd)
+      }
+
+      // allow passing a glob (limit to within folder though)
+      if (typeof spec.clearBeforeBuild === &#x27;string&#x27;) {
+        // create the output folder if it doesn&#x27;t exist
+        // just for convenience
+        if (!fs.existsSync(outputFolder)) {
+          fs.mkdirSync(outputFolder)
+        }
+        rimraf.sync(outputFolder + &#x27;/&#x27; + spec.clearBeforeBuild)
+      } else {
+        rimraf.sync(outputFolder)
+        fs.mkdirSync(outputFolder)
+      }
+    }
+
+    // minify in production
+    config.plugins.push(
+      new webpack.optimize.UglifyJsPlugin(spec.uglify),
+      new ExtractTextPlugin({
+        filename: spec.output.cssFilename,
+        allChun ...</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.hjs-webpack.html_plugin" id="apidoc.element.hjs-webpack.html_plugin">
+        function <span class="apidocSignatureSpan">hjs-webpack.</span>html_plugin
+        <span class="apidocSignatureSpan">(options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function HJSPlugin(options) {
+  this.config = options || {}
+  this.filename = options.filename || &#x27;index.html&#x27;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.hjs-webpack.html_plugin" id="apidoc.module.hjs-webpack.html_plugin">module hjs-webpack.html_plugin</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.hjs-webpack.html_plugin.html_plugin" id="apidoc.element.hjs-webpack.html_plugin.html_plugin">
+        function <span class="apidocSignatureSpan">hjs-webpack.</span>html_plugin
+        <span class="apidocSignatureSpan">(options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function HJSPlugin(options) {
+  this.config = options || {}
+  this.filename = options.filename || &#x27;index.html&#x27;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.hjs-webpack.html_plugin.prototype" id="apidoc.module.hjs-webpack.html_plugin.prototype">module hjs-webpack.html_plugin.prototype</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.hjs-webpack.html_plugin.prototype.addAssets" id="apidoc.element.hjs-webpack.html_plugin.prototype.addAssets">
+        function <span class="apidocSignatureSpan">hjs-webpack.html_plugin.prototype.</span>addAssets
+        <span class="apidocSignatureSpan">(compiler, data)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">addAssets = function (compiler, data) {
+  var dataType = typeof data
+  var pages
+  // if it&#x27;s a string, we assume it&#x27;s an html
+  // string for the index file
+  if (dataType === &#x27;string&#x27;) {
+    pages = {}
+    pages[this.filename] = data
+  } else if (dataType === &#x27;object&#x27;) {
+    pages = data
+  } else {
+    throw new Error(&#x27;Result from `html` callback must be a string or an object&#x27;)
+  }
+
+  for (var name in pages) {
+    compiler.assets[name] = (function (asset) {
+      return {
+        source: function () {
+          return asset
+        },
+        size: function () {
+          return asset.length
+        }
+      }
+    }(pages[name]))
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  // expose `isDev` flag to html function context
+  context.isDev = self.config.isDev
+
+  // handle both sync and async versions
+  if (htmlFunction.length === 2) {
+    htmlFunction(context, function (err, result) {
+      if (err) throw err
+      self.<span class="apidocCodeKeywordSpan">addAssets</span>(compiler, result)
+      callback()
+    })
+  } else {
+    self.addAssets(compiler, htmlFunction(context))
+    callback()
+  }
+})
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.hjs-webpack.html_plugin.prototype.apply" id="apidoc.element.hjs-webpack.html_plugin.prototype.apply">
+        function <span class="apidocSignatureSpan">hjs-webpack.html_plugin.prototype.</span>apply
+        <span class="apidocSignatureSpan">(compiler)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">apply = function (compiler) {
+  var self = this
+  var htmlFunction = this.config.html
+  var isDev = this.config.isDev
+  var serveCustomHtmlInDev = this.config.serveCustomHtmlInDev
+
+  // let user pass `true` to use
+  // the simple default
+  // Same if `isDev` and `serveCustomHtmlInDev` is falsy
+  if (htmlFunction === true || (!serveCustomHtmlInDev &#x26;&#x26; isDev)) {
+    htmlFunction = defaultHtml
+  } else if (!htmlFunction) {
+    return
+  }
+
+  self.compiler = compiler
+
+  compiler.plugin(&#x27;emit&#x27;, function (compiler, callback) {
+    // store stats on self
+    self.stats = compiler.getStats().toJson()
+    var context = self.getAssets()
+
+    // attach default template renderer
+    // this is useful if you want default
+    // html but want to create multiple or
+    // differently named HTML files
+    context.defaultTemplate = function (opts) {
+      var templateData = assign({}, context, opts)
+      return defaultHtml(templateData)
+    }
+
+    // access to package info
+    context.package = self.config.package
+
+    // access to stats
+    context.stats = self.stats
+
+    // expose `isDev` flag to html function context
+    context.isDev = self.config.isDev
+
+    // handle both sync and async versions
+    if (htmlFunction.length === 2) {
+      htmlFunction(context, function (err, result) {
+        if (err) throw err
+        self.addAssets(compiler, result)
+        callback()
+      })
+    } else {
+      self.addAssets(compiler, htmlFunction(context))
+      callback()
+    }
+  })
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    userScalable: false
+  },
+  html: &#x27;&#x3c;div id=&#x22;root&#x22;&#x3e;&#x3c;/div&#x3e;&#x27;,
+  publicPath: &#x27;/&#x27;
+}, incomingData)
+var result = [&#x27;&#x3c;!doctype html&#x3e;&#x27;]
+var add = function () {
+  result.push.<span class="apidocCodeKeywordSpan">apply</span>(result, arguments)
+}
+
+if (data.lang) {
+  add(&#x27;&#x3c;html lang=&#x22;&#x27; + data.lang + &#x27;&#x22;&#x3e;&#x27;)
+}
+add(&#x27;&#x3c;head&#x3e;&#x27;)
+add(&#x27;&#x3c;meta charset=&#x22;&#x27; + data.charset + &#x27;&#x22;/&#x3e;&#x27;)
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.hjs-webpack.html_plugin.prototype.getAssets" id="apidoc.element.hjs-webpack.html_plugin.prototype.getAssets">
+        function <span class="apidocSignatureSpan">hjs-webpack.html_plugin.prototype.</span>getAssets
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">getAssets = function () {
+  var assets = this.assets = {}
+  var value, chunk
+
+  for (chunk in this.stats.assetsByChunkName) {
+    value = this.stats.assetsByChunkName[chunk]
+
+    // Webpack outputs an array for each chunk when using sourcemaps
+    if (value instanceof Array) {
+      // if we&#x27;ve got a CSS file add it here
+      if (chunk === &#x27;main&#x27; &#x26;&#x26; value.length === 2) {
+        assets.css = value[1]
+      }
+
+      // The main bundle seems like it&#x27;s always the first
+      value = value[0]
+    }
+
+    assets[chunk] = value
+  }
+
+  return assets
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  }
+
+  self.compiler = compiler
+
+  compiler.plugin(&#x27;emit&#x27;, function (compiler, callback) {
+// store stats on self
+self.stats = compiler.getStats().toJson()
+var context = self.<span class="apidocCodeKeywordSpan">getAssets</span>()
+
+// attach default template renderer
+// this is useful if you want default
+// html but want to create multiple or
+// differently named HTML files
+context.defaultTemplate = function (opts) {
+  var templateData = assign({}, context, opts)
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.hjs-webpack.installed_hot_loaders" id="apidoc.module.hjs-webpack.installed_hot_loaders">module hjs-webpack.installed_hot_loaders</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.hjs-webpack.installed_hot_loaders.load" id="apidoc.element.hjs-webpack.installed_hot_loaders.load">
+        function <span class="apidocSignatureSpan">hjs-webpack.installed_hot_loaders.</span>load
+        <span class="apidocSignatureSpan">(config)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function load(config) {
+  // add hot loading clientside code
+  config.entry.unshift(
+    // Full path to webpack-hot-middleware so it works in npm2 and npm3
+    path.join(path.dirname(require.resolve(&#x27;webpack-hot-middleware&#x27;)), &#x27;client&#x27;)
+  )
+
+  // add dev plugins
+  config.plugins = config.plugins.concat([
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoEmitOnErrorsPlugin()
+  ])
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  port: spec.port,
+  https: spec.https,
+  hostname: spec.hostname || spec.host
+})
+
+// Enable Webpack HMR unless explictly disabled
+if (config.devServer.hot) {
+  installedHotLoaders.<span class="apidocCodeKeywordSpan">load</span>(config)
+}
+
+// Add optional loaders
+installedStyleLoaders.forEach(function (item) {
+  config.module.rules.push(item.dev)
+})
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
